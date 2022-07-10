@@ -52,6 +52,7 @@ func unpack(line string) string {
 						return "incorrect row"
 					}
 					n, _ := strconv.Atoi(string(v))
+					result = result[:len(result)-1]
 					for j := 0; j < n; j++ {
 						result += string(symbols[i-1])
 					}
