@@ -37,11 +37,16 @@ func main() {
 }
 
 func reverse(content []string) []string {
-	return nil
+	sort.Sort(sort.Reverse(sort.StringSlice(content)))
+	return content
 }
 
 func sortByColumn(content []string, column int) []string {
-	return nil
+	sort.Slice(content, func(i, j int) bool {
+		return content[i][column] < content[j][column]
+	})
+
+	return content
 }
 
 func sortByNumeric(content []string) []string {
@@ -74,7 +79,14 @@ func sortByNumeric(content []string) []string {
 }
 
 func unique(content []string) []string {
-	return nil
+	for i, str := range content {
+		for j := i + 1; j < len(content); j++ {
+			if str == content[j] {
+				content = append(content[:i], content[j:]...)
+			}
+		}
+	}
+	return content
 }
 
 func writeResult(path string, content []string) {
